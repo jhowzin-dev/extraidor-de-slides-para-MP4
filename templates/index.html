@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Slide Extractor</h1>
+        <p class="subtitle">Arraste um vídeo MP4 para extrair os slides</p>
+
+        <div id="drop-zone" class="drop-zone">
+            <div class="drop-icon">+</div>
+            <p>Arraste e solte o vídeo aqui</p>
+            <p class="small">ou clique para selecionar</p>
+            <input type="file" id="file-input" accept="video/mp4,video/*" hidden>
+        </div>
+
+        <div id="config" class="config hidden">
+            <label>Arquivo: <span id="file-name"></span></label>
+            <label>Intervalo entre slides:
+                <select id="interval">
+                    <option value="5">5s (mais denso)</option>
+                    <option value="8" selected>8s (padrão)</option>
+                    <option value="15">15s (mais rápido)</option>
+                </select>
+            </label>
+            <button id="extract-btn" class="btn">Extrair Slides</button>
+        </div>
+
+        <div id="progress" class="hidden">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <p id="progress-text">Processando...</p>
+        </div>
+
+        <div id="results" class="hidden">
+            <h2 id="result-title"></h2>
+            <div id="slides-grid" class="slides-grid"></div>
+            <a id="download-btn" class="btn download-btn" href="#">Baixar ZIP</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
